@@ -1,0 +1,20 @@
+Job Title: Full Stack Software Engineer
+Company: Nova Web Innovations
+Location: San Francisco, CA / Remote
+
+About the Role:
+We are hiring a Full Stack Developer to help build our next-generation web SaaS application. You will have the opportunity to work across modern React frontends and high-performance Node.js / Express backend services.
+
+Key Responsibilities:
+- Develop responsive, accessible web interfaces using React, TypeScript, and Tailwind CSS.
+- Build RESTful APIs and microservices using Node.js, Express, and PostgreSQL.
+- Implement secure authentication (OAuth2 / JWT) and authorization mechanisms.
+- Write unit and integration tests using Jest and Cypress.
+- Work with Docker containerization and deploy services to cloud environments.
+
+Required Qualifications & Skills:
+- Strong experience with JavaScript, TypeScript, React, HTML5, and CSS3.
+- Proven backend development experience with Node.js and Express.
+- Solid understanding of SQL and relational databases (PostgreSQL or MySQL).
+- Experience with Git, GitHub workflows, and REST APIs.
+- Experience with MongoDB or Docker is a plus.

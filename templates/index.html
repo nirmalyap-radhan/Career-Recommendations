@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerPulse AI • Dev Samaj Neo-Brutalist Career Intelligence Studio</title>
+  
+  <!-- Dev Samaj Typography: Bricolage Grotesque & Quicksand & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Marked for markdown parsing in chat and summaries -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Bricolage Grotesque"', '"Quicksand"', 'sans-serif'],
+            sans: ['"Quicksand"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            devpaper: '#F3ECD2',       // Dev Samaj warm cream background
+            devcard: '#FFFEFB',        // Dev Samaj crisp paper white
+            devdark: '#121212',        // Dev Samaj deep carbon ink
+            devpink: '#F489A3',        // Dev Samaj bubblegum pink
+            devorange: '#F97028',      // Dev Samaj vibrant orange
+            devmango: '#F3A20F',       // Dev Samaj golden mango
+            devyellow: '#F0BB0D',      // Dev Samaj retro yellow
+            devmint: '#2DD4BF',        // Dev Samaj mint / teal
+            devpurple: '#A78BFA',      // Dev Samaj lilac purple
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-light: #F3ECD2;
+      --color-dark: #121212;
+      --color-pink: #F489A3;
+      --color-light-plus: #FFFEFB;
+      --color-mango: #F3A20F;
+      --color-orange: #F97028;
+      --color-yellow: #F0BB0D;
+      --color-mint: #2DD4BF;
+      --color-purple: #A78BFA;
+      --border-thick: 2.5px solid #121212;
+      --shadow-sm: 2.5px 2.5px 0 #121212;
+      --shadow-md: 4.5px 4.5px 0 #121212;
+      --shadow-lg: 7px 7px 0 #121212;
+    }
+
+    body {
+      background-color: #F3ECD2;
+      color: #121212;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Bricolage Grotesque', 'Quicksand', sans-serif;
+      font-weight: 800;
+    }
+
+    /* Dev Samaj Neo-Brutalist Components */
+    .brutal-card {
+      background-color: #FFFEFB;
+      border: 2.5px solid #121212;
+      box-shadow: 5px 5px 0 #121212;
+      border-radius: 1.25rem;
+    }
+
+    .brutal-card-lg {
+      background-color: #FFFEFB;
+      border: 3px solid #121212;
+      box-shadow: 8px 8px 0 #121212;
+      border-radius: 1.5rem;
+    }
+
+    .brutal-btn {
+      border: 2px solid #121212;
+      box-shadow: 3px 3px 0 #121212;
+      font-weight: 700;
+      transition: transform 0.15s cubic-bezier(0.625, 0.05, 0, 1), box-shadow 0.15s cubic-bezier(0.625, 0.05, 0, 1);
+    }
+    .brutal-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 #121212;
+    }
+    .brutal-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 #121212;
+    }
+
+    .brutal-btn-orange {
+      background-color: #F97028;
+      color: #121212;
+      border: 2.5px solid #121212;
+      box-shadow: 4px 4px 0 #121212;
+      font-weight: 800;
+      transition: all 0.15s ease-out;
+    }
+    .brutal-btn-orange:hover {
+      background-color: #ea580c;
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 #121212;
+    }
+
+    .brutal-btn-pink {
+      background-color: #F489A3;
+      color: #121212;
+      border: 2.5px solid #121212;
+      box-shadow: 4px 4px 0 #121212;
+      font-weight: 800;
+    }
+    .brutal-btn-pink:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 #121212;
+    }
+
+    .brutal-tag {
+      border: 1.5px solid #121212;
+      box-shadow: 2px 2px 0 #121212;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    .brutal-input {
+      background-color: #FFFEFB;
+      border: 2px solid #121212;
+      box-shadow: 2.5px 2.5px 0 #121212;
+      border-radius: 0.85rem;
+      color: #121212;
+      font-weight: 600;
+      transition: box-shadow 0.15s ease;
+    }
+    .brutal-input:focus {
+      outline: none;
+      box-shadow: 4px 4px 0 #F97028;
+      border-color: #121212;
+    }
+
+    .pulse-dot {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.15); }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3ECD2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #121212;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F97028;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#F97028] selection:text-white">
+
+  <!-- ================= TOP NAVIGATION BAR (DEVSAMAJ NEO-BRUTALIST THEME) ================= -->
+  <header class="sticky top-0 z-50 border-b-[3px] border-devdark bg-[#FFFEFB]/95 backdrop-blur-md shadow-[0_4px_0_rgba(18,18,18,0.06)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-2xl bg-[#F97028] border-2 border-devdark shadow-[3px_3px_0_#121212] flex items-center justify-center text-devdark transition-transform hover:rotate-6">
+          <i data-lucide="sparkles" class="w-6 h-6 text-devdark stroke-[2.5]"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h1 class="text-2xl font-black tracking-tight text-devdark font-heading">
+              CareerPulse<span class="text-[#F97028]">AI</span>
+            </h1>
+            <span class="text-[11px] uppercase tracking-wider font-extrabold px-2.5 py-0.5 rounded-full bg-devpink text-devdark border-[1.5px] border-devdark shadow-[2px_2px_0_#121212] -rotate-2">
+              Studio
+            </span>
+          </div>
+          <p class="text-[12px] text-stone-600 font-semibold">Resume Intelligence & Career Pathway Engine</p>
+        </div>
+      </div>
+
+      <!-- Right Action & Engine Status -->
+      <div class="flex items-center gap-3">
+        <!-- Live AI Badge -->
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#CCFBF1] border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] text-devdark text-xs font-bold">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 border border-devdark pulse-dot"></span>
+          <span>Engine: <b id="engine-badge" class="uppercase">GROQ</b></span>
+        </div>
+
+        <!-- Upload Resume Button -->
+        <label for="resume-upload-input" class="cursor-pointer brutal-btn-orange inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold text-devdark cursor-pointer">
+          <i data-lucide="upload" class="w-4 h-4 stroke-[2.5]"></i>
+          <span>Upload PDF Resume</span>
+        </label>
+        <input type="file" id="resume-upload-input" accept=".pdf" class="hidden" onchange="handleFileUpload(event)">
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SUB-NAVIGATION TABS (NEO-BRUTALIST PILLS) ================= -->
+  <div class="border-b-[2.5px] border-devdark bg-[#EAE3C5]/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex space-x-2 sm:space-x-3 overflow-x-auto py-3">
+        <button onclick="setActiveTab('tab-profile')" id="nav-tab-profile" class="tab-link active brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold bg-devpink text-devdark border-2 border-devdark shadow-[3.5px_3.5px_0_#121212]">
+          <i data-lucide="user" class="w-4 h-4 stroke-[2.5]"></i> Candidate Intelligence
+        </button>
+        <button onclick="setActiveTab('tab-recs')" id="nav-tab-recs" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="compass" class="w-4 h-4 stroke-[2.5]"></i> Career Recommendations
+        </button>
+        <button onclick="setActiveTab('tab-ats')" id="nav-tab-ats" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="scan-line" class="w-4 h-4 stroke-[2.5]"></i> 4-Pillar ATS Diagnostic
+        </button>
+        <button onclick="setActiveTab('tab-optimizer')" id="nav-tab-optimizer" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="wand-2" class="w-4 h-4 stroke-[2.5]"></i> AI Resume Optimizer
+        </button>
+        <button onclick="setActiveTab('tab-chat')" id="nav-tab-chat" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="message-square" class="w-4 h-4 stroke-[2.5]"></i> Career Counselor AI
+        </button>
+        <button onclick="setActiveTab('tab-recruiter')" id="nav-tab-recruiter" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="users" class="w-4 h-4 stroke-[2.5]"></i> Recruiter Screening
+        </button>
+        <button onclick="setActiveTab('tab-catalog')" id="nav-tab-catalog" class="tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]">
+          <i data-lucide="briefcase" class="w-4 h-4 stroke-[2.5]"></i> 40+ Tech Roles Explorer
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ================= MAIN APP CONTAINER ================= -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-7">
+
+    <!-- HERO CANDIDATE BANNER CARD (PERSISTENT CONTEXT) -->
+    <div id="candidate-header" class="mb-7 p-6 brutal-card-lg relative overflow-hidden bg-[#FFFEFB]">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+        <!-- Candidate Identity -->
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-2xl bg-devpink border-[2.5px] border-devdark shadow-[3.5px_3.5px_0_#121212] flex items-center justify-center text-devdark text-2xl font-black font-heading shrink-0" id="cand-avatar">
+            AM
+          </div>
+          <div>
+            <div class="flex items-center gap-3">
+              <h2 class="text-2xl font-black text-devdark font-heading tracking-tight" id="cand-name">Loading Profile...</h2>
+              <span class="px-3 py-0.5 rounded-full text-xs font-extrabold bg-[#FEF08A] text-devdark border-[1.5px] border-devdark shadow-[2px_2px_0_#121212] font-mono" id="cand-filename">resume.pdf</span>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-2 text-xs font-semibold text-stone-700">
+              <span class="flex items-center gap-1.5 brutal-tag px-2.5 py-0.5 bg-white"><i data-lucide="mail" class="w-3.5 h-3.5 text-[#F97028]"></i> <span id="cand-email">Not specified</span></span>
+              <span class="flex items-center gap-1.5 brutal-tag px-2.5 py-0.5 bg-white"><i data-lucide="phone" class="w-3.5 h-3.5 text-[#F3A20F]"></i> <span id="cand-phone">Not specified</span></span>
+              <span class="flex items-center gap-1.5 brutal-tag px-2.5 py-0.5 bg-white"><i data-lucide="linkedin" class="w-3.5 h-3.5 text-blue-600"></i> <span id="cand-linkedin">LinkedIn</span></span>
+              <span class="flex items-center gap-1.5 brutal-tag px-2.5 py-0.5 bg-white"><i data-lucide="github" class="w-3.5 h-3.5 text-purple-600"></i> <span id="cand-github">GitHub</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diagnostic Stat Tiles (Dev Samaj Color Accents) -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="px-4 py-2.5 rounded-2xl bg-[#FEF08A] border-2 border-devdark shadow-[3.5px_3.5px_0_#121212] text-center min-w-[105px]">
+            <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider">Identified Skills</div>
+            <div class="text-xl font-black text-devdark mt-0.5 font-heading" id="cand-skills-count">0</div>
+          </div>
+          <div class="px-4 py-2.5 rounded-2xl bg-[#CCFBF1] border-2 border-devdark shadow-[3.5px_3.5px_0_#121212] text-center min-w-[105px]">
+            <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider">Experience</div>
+            <div class="text-xl font-black text-devdark mt-0.5 font-heading" id="cand-exp">~0 yrs</div>
+          </div>
+          <div class="px-4 py-2.5 rounded-2xl bg-[#DDD6FE] border-2 border-devdark shadow-[3.5px_3.5px_0_#121212] text-center min-w-[125px]">
+            <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider">Academic Degree</div>
+            <div class="text-xs font-black text-devdark mt-1 truncate max-w-[130px] font-heading" id="cand-degree">Degree</div>
+          </div>
+          <div class="px-4 py-2.5 rounded-2xl bg-[#FECDD3] border-2 border-devdark shadow-[3.5px_3.5px_0_#121212] text-center min-w-[115px]">
+            <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider">Action-Verb Score</div>
+            <div class="text-xl font-black text-devdark mt-0.5 font-heading" id="cand-action-verbs">0/100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 1: CANDIDATE INTELLIGENCE & SKILLS ================= -->
+    <section id="tab-profile" class="tab-content">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left: Resume Summary & Sections Overview -->
+        <div class="lg:col-span-1 space-y-6">
+          <div class="p-5 brutal-card">
+            <h3 class="text-sm font-extrabold text-devdark uppercase tracking-wider flex items-center gap-2 mb-3 font-heading">
+              <i data-lucide="file-text" class="w-4 h-4 text-[#F97028] stroke-[2.5]"></i> Extracted Summary
+            </h3>
+            <p id="profile-summary" class="text-xs text-stone-800 leading-relaxed bg-[#FAF7ED] p-3.5 rounded-xl border-2 border-devdark font-semibold">
+              Loading resume summary...
+            </p>
+          </div>
+
+          <div class="p-5 brutal-card">
+            <h3 class="text-sm font-extrabold text-devdark uppercase tracking-wider flex items-center gap-2 mb-3 font-heading">
+              <i data-lucide="layers" class="w-4 h-4 text-[#F3A20F] stroke-[2.5]"></i> Detected Resume Sections
+            </h3>
+            <div id="profile-sections-chips" class="flex flex-wrap gap-2">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="p-5 brutal-card">
+            <h3 class="text-sm font-extrabold text-devdark uppercase tracking-wider flex items-center gap-2 mb-3 font-heading">
+              <i data-lucide="zap" class="w-4 h-4 text-devpink stroke-[2.5]"></i> ATS Impact Action Verbs
+            </h3>
+            <div id="profile-verbs-chips" class="flex flex-wrap gap-2">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 600+ Skills by Taxonomy Domain -->
+        <div class="lg:col-span-2 p-6 brutal-card flex flex-col">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b-2 border-devdark">
+            <div>
+              <h3 class="text-lg font-black text-devdark flex items-center gap-2 font-heading">
+                <i data-lucide="cpu" class="w-5 h-5 text-[#F97028] stroke-[2.5]"></i> Technical Competency Cloud
+              </h3>
+              <p class="text-xs text-stone-600 font-semibold">Categorized across the 600+ skills industry taxonomy</p>
+            </div>
+            
+            <input type="text" id="skill-search-input" onkeyup="filterSkills()" placeholder="Search skills (e.g. PyTorch)..." class="px-3.5 py-2 text-xs brutal-input w-full sm:w-60">
+          </div>
+
+          <div id="skills-taxonomy-container" class="space-y-4 overflow-y-auto max-h-[540px] pr-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: CAREER RECOMMENDATIONS ================= -->
+    <section id="tab-recs" class="tab-content hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-5 brutal-card">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-[#FED7AA] border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] text-devdark">
+            <i data-lucide="target" class="w-5 h-5 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-devdark font-heading">Target Career Pathway Recommendations</h3>
+            <p class="text-xs text-stone-600 font-semibold">Computed via Content-Based TF-IDF Vectorization & Skill Overlap Matching</p>
+          </div>
+        </div>
+
+        <!-- Domain filter dropdown -->
+        <div class="flex items-center gap-2">
+          <label class="text-xs text-devdark font-bold">Domain Filter:</label>
+          <select id="recs-domain-filter" onchange="fetchRecommendations()" class="px-3 py-1.5 text-xs brutal-input">
+            <option value="All">All Domains (40+ Roles)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="recs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: 4-PILLAR ATS MATCHING ================= -->
+    <section id="tab-ats" class="tab-content hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left: Job Description Selector & Input -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="p-5 brutal-card">
+            <h3 class="text-sm font-extrabold text-devdark uppercase tracking-wider flex items-center gap-2 mb-3 font-heading">
+              <i data-lucide="file-check" class="w-4 h-4 text-[#F97028] stroke-[2.5]"></i> Select Job Description
+            </h3>
+
+            <div class="space-y-2 mb-4">
+              <button onclick="selectJD('ml_engineer', this)" class="jd-btn w-full text-left p-3 rounded-xl border-2 border-devdark bg-[#FED7AA] text-devdark text-xs font-bold shadow-[2px_2px_0_#121212] flex items-center justify-between">
+                <span>Machine Learning Engineer (Apex AI)</span>
+                <i data-lucide="check" class="w-4 h-4 text-devdark stroke-[3]"></i>
+              </button>
+              <button onclick="selectJD('data_scientist', this)" class="jd-btn w-full text-left p-3 rounded-xl border-2 border-devdark bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] text-xs font-bold shadow-[2px_2px_0_#121212] flex items-center justify-between">
+                <span>Senior Data Scientist (InsightMetrics)</span>
+              </button>
+              <button onclick="selectJD('cloud_devops', this)" class="jd-btn w-full text-left p-3 rounded-xl border-2 border-devdark bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] text-xs font-bold shadow-[2px_2px_0_#121212] flex items-center justify-between">
+                <span>Cloud & DevOps Engineer (CloudScale)</span>
+              </button>
+              <button onclick="selectJD('fullstack', this)" class="jd-btn w-full text-left p-3 rounded-xl border-2 border-devdark bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] text-xs font-bold shadow-[2px_2px_0_#121212] flex items-center justify-between">
+                <span>Full Stack Engineer (Nova Web)</span>
+              </button>
+            </div>
+
+            <div class="mb-3">
+              <label class="block text-xs font-bold text-devdark mb-1">Target Role Title</label>
+              <input type="text" id="ats-job-title" value="Machine Learning Engineer" class="w-full px-3 py-2 text-xs brutal-input">
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-xs font-bold text-devdark mb-1">Job Description Content</label>
+              <textarea id="ats-job-text" rows="9" class="w-full p-3 text-xs brutal-input font-mono leading-relaxed"></textarea>
+            </div>
+
+            <button onclick="runJobMatch()" class="w-full py-3 brutal-btn-orange rounded-xl text-xs font-black flex items-center justify-center gap-2">
+              <i data-lucide="play" class="w-4 h-4 stroke-[2.5]"></i> Run 4-Pillar ATS Diagnostic
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: 4-Pillar Scorecard & Skill Gap Diagnostic -->
+        <div class="lg:col-span-7 space-y-6">
+          <div id="ats-result-card" class="p-6 brutal-card min-h-[480px]">
+            <!-- Populated via JS -->
+            <div class="text-center py-20 text-stone-500">
+              <i data-lucide="scan-line" class="w-14 h-14 mx-auto text-[#F97028] mb-3 stroke-[2]"></i>
+              <p class="text-sm font-bold text-devdark">Click "Run 4-Pillar ATS Diagnostic" to generate compatibility report.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: AI RESUME OPTIMIZER ================= -->
+    <section id="tab-optimizer" class="tab-content hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left Sub-Menu for AI Tools -->
+        <div class="lg:col-span-1 space-y-4">
+          <div class="p-5 brutal-card">
+            <h3 class="text-sm font-extrabold text-devdark uppercase tracking-wider mb-3 flex items-center gap-2 font-heading">
+              <i data-lucide="sparkles" class="w-4 h-4 text-[#F97028] stroke-[2.5]"></i> AI Studio Modules
+            </h3>
+            <div class="space-y-2.5">
+              <button onclick="switchAITool('summary')" id="ai-tool-btn-summary" class="ai-tool-btn w-full p-3 text-left rounded-xl bg-devpink text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] text-xs font-extrabold flex items-center gap-2.5">
+                <i data-lucide="file-text" class="w-4 h-4 stroke-[2.5]"></i> ATS Professional Summary
+              </button>
+              <button onclick="switchAITool('rewrite')" id="ai-tool-btn-rewrite" class="ai-tool-btn w-full p-3 text-left rounded-xl bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] border-2 border-devdark shadow-[2px_2px_0_#121212] text-xs font-bold flex items-center gap-2.5">
+                <i data-lucide="check-check" class="w-4 h-4 stroke-[2.5]"></i> STAR Project Rewriter
+              </button>
+              <button onclick="switchAITool('roadmap')" id="ai-tool-btn-roadmap" class="ai-tool-btn w-full p-3 text-left rounded-xl bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] border-2 border-devdark shadow-[2px_2px_0_#121212] text-xs font-bold flex items-center gap-2.5">
+                <i data-lucide="milestone" class="w-4 h-4 stroke-[2.5]"></i> 8-Week Upskilling Roadmap
+              </button>
+            </div>
+          </div>
+
+          <div class="p-5 brutal-card">
+            <label class="block text-xs font-bold text-devdark mb-1">Target Career Role for AI</label>
+            <input type="text" id="ai-target-role" value="Machine Learning Engineer" class="w-full px-3 py-2 text-xs brutal-input">
+            <p class="text-[11px] text-stone-600 font-semibold mt-2">AI outputs will strictly ground recommendations in this target title.</p>
+          </div>
+        </div>
+
+        <!-- Right AI Tool Execution Canvas -->
+        <div class="lg:col-span-2">
+          <!-- Tool 1: Summary -->
+          <div id="ai-panel-summary" class="ai-panel p-6 brutal-card space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-devdark">
+              <div>
+                <h3 class="text-lg font-black text-devdark font-heading">ATS-Optimized Executive Summary</h3>
+                <p class="text-xs text-stone-600 font-semibold">Synthesizes candidate skills into a high-impact recruiter hook</p>
+              </div>
+              <button onclick="generateAISummary()" class="brutal-btn-orange px-4 py-2 rounded-xl text-xs font-extrabold flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 stroke-[2.5]"></i> Generate Summary
+              </button>
+            </div>
+            <div id="ai-summary-output" class="p-4 rounded-xl bg-[#FAF7ED] border-2 border-devdark text-stone-800 text-xs font-semibold leading-relaxed min-h-[160px]">
+              Click "Generate Summary" to craft an ATS-tailored professional summary.
+            </div>
+          </div>
+
+          <!-- Tool 2: Project Rewriter -->
+          <div id="ai-panel-rewrite" class="ai-panel hidden p-6 brutal-card space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-devdark">
+              <div>
+                <h3 class="text-lg font-black text-devdark font-heading">STAR Project Description Rewriter</h3>
+                <p class="text-xs text-stone-600 font-semibold">Converts basic bullet points into Situation, Task, Action, Result</p>
+              </div>
+              <button onclick="generateAIRewrite()" class="brutal-btn-orange px-4 py-2 rounded-xl text-xs font-extrabold flex items-center gap-2">
+                <i data-lucide="wand-2" class="w-3.5 h-3.5 stroke-[2.5]"></i> Rewrite (STAR)
+              </button>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-devdark mb-1">Original Project Description</label>
+              <textarea id="ai-raw-project" rows="3" class="w-full p-3 text-xs brutal-input font-mono">Built a real-time object detection pipeline with YOLO and Docker on AWS.</textarea>
+            </div>
+            <div id="ai-rewrite-output" class="p-4 rounded-xl bg-[#FAF7ED] border-2 border-devdark text-stone-800 text-xs font-semibold leading-relaxed min-h-[160px]">
+              Click "Rewrite (STAR)" to generate impact-driven bullet points.
+            </div>
+          </div>
+
+          <!-- Tool 3: Roadmap -->
+          <div id="ai-panel-roadmap" class="ai-panel hidden p-6 brutal-card space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-devdark">
+              <div>
+                <h3 class="text-lg font-black text-devdark font-heading">Personalized 8-Week Upskilling Roadmap</h3>
+                <p class="text-xs text-stone-600 font-semibold">Structured curriculum targeting your identified skill gaps</p>
+              </div>
+              <button onclick="generateAIRoadmap()" class="brutal-btn-orange px-4 py-2 rounded-xl text-xs font-extrabold flex items-center gap-2">
+                <i data-lucide="milestone" class="w-3.5 h-3.5 stroke-[2.5]"></i> Build Roadmap
+              </button>
+            </div>
+            <div id="ai-roadmap-output" class="p-4 rounded-xl bg-[#FAF7ED] border-2 border-devdark text-stone-800 text-xs font-semibold leading-relaxed min-h-[200px]">
+              Click "Build Roadmap" to generate a step-by-step curriculum.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: CAREER COUNSELOR CHATBOT (SPEECH BUBBLE STYLE) ================= -->
+    <section id="tab-chat" class="tab-content hidden">
+      <div class="max-w-4xl mx-auto p-6 brutal-card flex flex-col h-[660px]">
+        
+        <!-- Chat Header -->
+        <div class="flex items-center justify-between pb-4 border-b-2 border-devdark">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-[#FEF08A] border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] flex items-center justify-center text-devdark">
+              <i data-lucide="bot" class="w-6 h-6 stroke-[2.5]"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-black text-devdark font-heading">AI Career Counselor Advisor</h3>
+              <p class="text-xs text-stone-600 font-semibold">Grounded in your resume qualifications and verified skills</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-devdark">Target:</span>
+            <input type="text" id="chat-target-role" value="Machine Learning Engineer" class="px-2.5 py-1 text-xs brutal-input w-48">
+          </div>
+        </div>
+
+        <!-- Chat Message Log (Speech Bubbles) -->
+        <div id="chat-log" class="flex-1 overflow-y-auto py-4 space-y-4 pr-2">
+          <!-- Initial Welcome Message -->
+          <div class="flex gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#FEF08A] border-2 border-devdark shadow-[2px_2px_0_#121212] flex items-center justify-center text-devdark shrink-0">
+              <i data-lucide="bot" class="w-5 h-5 stroke-[2.5]"></i>
+            </div>
+            <div class="p-4 rounded-2xl bg-[#FFFEFB] border-2 border-devdark shadow-[3px_3px_0_#121212] text-xs font-semibold text-devdark leading-relaxed max-w-2xl">
+              Hello! I am your AI Career Guidance Counselor. I have analyzed your parsed resume profile and technical skills. How can I help you accelerate your tech career today?
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt Suggestions (Dev Samaj Stickers) -->
+        <div class="pt-2 pb-3 flex flex-wrap gap-2 border-t-2 border-devdark">
+          <button onclick="sendQuickPrompt('What are the most common interview questions for this role?')" class="brutal-btn px-3 py-1.5 rounded-xl bg-[#FFFEFB] hover:bg-[#FEF08A] text-devdark text-[11px] font-bold">
+            🎯 Common Interview Questions
+          </button>
+          <button onclick="sendQuickPrompt('What are my biggest skill gaps for this target position?')" class="brutal-btn px-3 py-1.5 rounded-xl bg-[#FFFEFB] hover:bg-[#FEF08A] text-devdark text-[11px] font-bold">
+            🔍 My Critical Skill Gaps
+          </button>
+          <button onclick="sendQuickPrompt('How can I make my project descriptions stand out to recruiters?')" class="brutal-btn px-3 py-1.5 rounded-xl bg-[#FFFEFB] hover:bg-[#FEF08A] text-devdark text-[11px] font-bold">
+            💡 Project Showcase Advice
+          </button>
+          <button onclick="sendQuickPrompt('What is the market salary benchmark for this position?')" class="brutal-btn px-3 py-1.5 rounded-xl bg-[#FFFEFB] hover:bg-[#FEF08A] text-devdark text-[11px] font-bold">
+            💰 Expected Salary Range
+          </button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form onsubmit="handleChatSubmit(event)" class="flex gap-2">
+          <input type="text" id="chat-input" placeholder="Ask career advice, skill requirements, or interview prep..." class="flex-1 px-4 py-2.5 text-xs brutal-input">
+          <button type="submit" class="brutal-btn-orange px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
+            <span>Send</span>
+            <i data-lucide="send" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= TAB 6: RECRUITER SCREENING (NEO-BRUTALIST TABLE) ================= -->
+    <section id="tab-recruiter" class="tab-content hidden">
+      <div class="p-6 brutal-card space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b-2 border-devdark">
+          <div>
+            <div class="flex items-center gap-2.5">
+              <h3 class="text-lg font-black text-devdark flex items-center gap-2 font-heading">
+                <i data-lucide="users" class="w-5 h-5 text-[#F97028] stroke-[2.5]"></i> Multi-Candidate Screening Leaderboard
+              </h3>
+              <span id="recruiter-pool-count-badge" class="px-3 py-0.5 rounded-full text-xs font-extrabold bg-[#CCFBF1] text-devdark border-2 border-devdark shadow-[2px_2px_0_#121212]">Pool: 5 Candidates</span>
+            </div>
+            <p class="text-xs text-stone-600 font-semibold mt-1">Real-time batch ATS evaluation comparing all candidates (including your uploaded resume) against target position</p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2.5">
+            <label class="text-xs text-devdark font-bold">Target Role:</label>
+            <select id="recruiter-jd-select" onchange="runRecruiterBatch()" class="px-3 py-1.5 text-xs brutal-input">
+              <option value="ml_engineer">Machine Learning Engineer (Apex AI)</option>
+              <option value="data_scientist">Senior Data Scientist (InsightMetrics)</option>
+              <option value="cloud_devops">Cloud & DevOps Engineer (CloudScale)</option>
+              <option value="fullstack">Full Stack Engineer (Nova Web)</option>
+            </select>
+            
+            <button onclick="document.getElementById('resume-upload-input').click()" class="brutal-btn-orange px-3.5 py-1.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
+              <i data-lucide="user-plus" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              <span>Add Candidate</span>
+            </button>
+
+            <button onclick="clearSampleCandidates()" title="Remove benchmark sample candidates from pool" class="brutal-btn px-3 py-1.5 rounded-xl bg-[#FFE4E6] hover:bg-[#FECDD3] text-devdark text-xs font-bold flex items-center gap-1.5">
+              <i data-lucide="user-x" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+              <span>Remove Sample Resumes</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="overflow-x-auto rounded-2xl border-2 border-devdark shadow-[4px_4px_0_#121212]">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#F3ECD2] border-b-2 border-devdark">
+              <tr class="text-devdark text-[11px] uppercase tracking-wider font-extrabold">
+                <th class="py-3.5 px-4">Rank</th>
+                <th class="py-3.5 px-4">Candidate Profile</th>
+                <th class="py-3.5 px-4 text-center">ATS Match</th>
+                <th class="py-3.5 px-4 text-center">Skills Alignment</th>
+                <th class="py-3.5 px-4 text-center">Experience Fit</th>
+                <th class="py-3.5 px-4">Readiness Verdict</th>
+                <th class="py-3.5 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="recruiter-leaderboard-body" class="divide-y-2 divide-devdark/20 bg-[#FFFEFB]">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 7: 40+ TECH ROLES EXPLORER (DEVSAMAJ STICKERS & CARDS) ================= -->
+    <section id="tab-catalog" class="tab-content hidden">
+      <div class="p-6 brutal-card space-y-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b-2 border-devdark">
+          <div>
+            <div class="flex items-center gap-2.5">
+              <h3 class="text-lg font-black text-devdark flex items-center gap-2 font-heading">
+                <i data-lucide="book-open" class="w-5 h-5 text-[#F97028] stroke-[2.5]"></i> Benchmark 40+ Industry Roles Explorer
+              </h3>
+              <span id="catalog-count-badge" class="px-3 py-0.5 rounded-full text-xs font-extrabold bg-[#CCFBF1] text-devdark border-2 border-devdark shadow-[2px_2px_0_#121212]">40 Roles Live</span>
+            </div>
+            <p class="text-xs text-stone-600 font-semibold mt-1">Explore benchmark job roles, salary bands, and match directly against your active resume in real time</p>
+          </div>
+          
+          <!-- Real-Time Search Bar -->
+          <div class="relative w-full lg:w-80">
+            <i data-lucide="search" class="w-4 h-4 text-devdark absolute left-3.5 top-3 pointer-events-none stroke-[2.5]"></i>
+            <input type="text" id="catalog-search-input" oninput="filterCatalogRealtime()" placeholder="Search roles, skills (e.g. 'ML', 'Cloud')..." class="w-full pl-10 pr-3.5 py-2 text-xs brutal-input font-bold">
+          </div>
+        </div>
+
+        <!-- Real-Time Domain Filter Tabs (Neo-Brutalist Sticker Pills) -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1.5" id="catalog-domain-tabs">
+          <button onclick="setCatalogDomainFilter('All', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-black bg-[#F97028] text-devdark shadow-[3px_3px_0_#121212]">All Roles</button>
+          <button onclick="setCatalogDomainFilter('Artificial Intelligence & ML', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">AI & ML</button>
+          <button onclick="setCatalogDomainFilter('Data Science & Analytics', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Data Science</button>
+          <button onclick="setCatalogDomainFilter('Cloud & Infrastructure', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Cloud & DevOps</button>
+          <button onclick="setCatalogDomainFilter('Software Engineering', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Software Eng</button>
+          <button onclick="setCatalogDomainFilter('Cybersecurity', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Cybersecurity</button>
+          <button onclick="setCatalogDomainFilter('Mobile & Embedded', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Mobile & Systems</button>
+          <button onclick="setCatalogDomainFilter('Database & Storage', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Data & DBA</button>
+          <button onclick="setCatalogDomainFilter('Technical Leadership', this)" class="catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]">Leadership & QA</button>
+        </div>
+
+        <!-- 40+ Roles Live Grid -->
+        <div id="catalog-roles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-h-[300px]">
+          <!-- Rendered in real-time via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= DETAIL MODAL (DEVSAMAJ JOIN-MODAL STYLE) ================= -->
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-devdark/70 backdrop-blur-sm">
+    <div class="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto p-6 bg-[#FFFEFB] border-[3.5px] border-devdark shadow-[10px_10px_0_#F97028] rounded-3xl">
+      <div class="flex items-start justify-between pb-4 border-b-2 border-devdark">
+        <div>
+          <h3 id="modal-title" class="text-xl font-black text-devdark font-heading">Title</h3>
+          <p id="modal-subtitle" class="text-xs text-[#F97028] font-bold font-mono mt-0.5">Subtitle</p>
+        </div>
+        <button onclick="closeModal()" class="p-1.5 rounded-xl bg-[#FFE4E6] hover:bg-[#FECDD3] border-2 border-devdark shadow-[2px_2px_0_#121212] transition-transform hover:scale-110 hover:rotate-90">
+          <i data-lucide="x" class="w-5 h-5 text-devdark stroke-[3]"></i>
+        </button>
+      </div>
+      <div id="modal-content" class="py-4 space-y-4 text-xs font-semibold text-devdark">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="mt-auto border-t-[2.5px] border-devdark bg-[#FFFEFB] py-5 text-center text-xs text-stone-700 font-bold">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>AI/ML with Python Training Program • Major Project • October 2026 Batch</div>
+      <div class="flex items-center gap-4">
+        <span class="text-[#F97028] font-black">PyMuPDF • TF-IDF • Cosine Similarity • Groq/Gemini</span>
+        <a href="/reports/Project_Report.pdf" target="_blank" class="underline text-devdark hover:text-[#F97028] font-extrabold transition-colors">Download Project Report (PDF)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= CLIENT JAVASCRIPT ================= -->
+  <script>
+    let activeCandidate = null;
+    let sampleDataCache = null;
+    let allCatalogRoles = [];
+    let currentJDText = "";
+    let activeCatalogDomain = "All";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      lucide.createIcons();
+      try { await fetchSampleData(); } catch(e) { console.error("fetchSampleData error:", e); }
+      try { await fetchCandidateProfile(); } catch(e) { console.error("fetchCandidateProfile error:", e); }
+      try { await fetchRecommendations(); } catch(e) { console.error("fetchRecommendations error:", e); }
+      try { await fetchCatalogRoles(); } catch(e) { console.error("fetchCatalogRoles error:", e); }
+      try { await runRecruiterBatch(); } catch(e) { console.error("runRecruiterBatch error:", e); }
+    });
+
+    // ================= TABS CONTROLLER =================
+    function setActiveTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-link').forEach(el => {
+        el.className = "tab-link brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] hover:bg-[#FEF08A]";
+      });
+
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      const btn = document.getElementById(`nav-${tabId}`);
+      if (btn) {
+        btn.className = "tab-link active brutal-btn inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold bg-devpink text-devdark border-2 border-devdark shadow-[3.5px_3.5px_0_#121212]";
+      }
+
+      if (tabId === 'tab-recruiter') {
+        runRecruiterBatch();
+      } else if (tabId === 'tab-catalog') {
+        fetchCatalogRoles();
+      } else if (tabId === 'tab-ats') {
+        const titleVal = document.getElementById('ats-job-title')?.value;
+        const textVal = document.getElementById('ats-job-text')?.value;
+        if (!textVal && sampleDataCache?.jds?.[0]) {
+          selectJD(sampleDataCache.jds[0].id);
+        }
+        runJobMatch();
+      }
+      lucide.createIcons();
+    }
+
+    async function fetchSampleData() {
+      try {
+        const res = await fetch('/api/sample-data');
+        sampleDataCache = await res.json();
+        
+        const filterSelect = document.getElementById('recs-domain-filter');
+        if (filterSelect && sampleDataCache.categories) {
+          filterSelect.innerHTML = sampleDataCache.categories.map(c => `<option value="${c}">${c === 'All' ? 'All Domains (40+ Roles)' : c}</option>`).join('');
+        }
+
+        if (sampleDataCache.jds && sampleDataCache.jds.length > 0) {
+          selectJD(sampleDataCache.jds[0].id);
+        }
+      } catch (e) {
+        console.error("Failed to load sample data:", e);
+      }
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async function() {
+        const base64Data = reader.result;
+        try {
+          const res = await fetch('/api/upload-resume-json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              filename: file.name,
+              base64_data: base64Data
+            })
+          });
+          if (!res.ok) {
+            const err = await res.json();
+            alert(err.detail || "Failed to parse uploaded PDF");
+            return;
+          }
+          activeCandidate = await res.json();
+          renderCandidateProfile();
+          await fetchRecommendations();
+          await fetchCatalogRoles();
+          runRecruiterBatch();
+          runJobMatch();
+          lucide.createIcons();
+        } catch (e) {
+          alert("Upload error: " + e);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function fetchCandidateProfile() {
+      try {
+        const res = await fetch('/api/active-candidate');
+        activeCandidate = await res.json();
+        renderCandidateProfile();
+      } catch (e) {
+        console.error("Error loading candidate profile:", e);
+      }
+    }
+
+    function renderCandidateProfile() {
+      if (!activeCandidate) return;
+
+      const name = activeCandidate.name || "Candidate Profile";
+      document.getElementById('cand-name').innerText = name;
+      document.getElementById('cand-filename').innerText = activeCandidate.file_name || "Uploaded Resume.pdf";
+
+      const initials = (name.trim().split(/\s+/).map(n => n[0]).join('') || "CP").substring(0, 2).toUpperCase();
+      document.getElementById('cand-avatar').innerText = initials;
+
+      const email = activeCandidate.contact?.email || activeCandidate.email || "Not specified";
+      const phone = activeCandidate.contact?.phone || activeCandidate.phone || "Not specified";
+      const linkedin = activeCandidate.contact?.linkedin || activeCandidate.linkedin || null;
+      const github = activeCandidate.contact?.github || activeCandidate.github || null;
+
+      document.getElementById('cand-email').innerText = email;
+      document.getElementById('cand-phone').innerText = phone;
+      document.getElementById('cand-linkedin').innerText = linkedin ? "LinkedIn Profile" : "Not listed";
+      document.getElementById('cand-github').innerText = github ? "GitHub Profile" : "Not listed";
+
+      const skills = activeCandidate.skills || [];
+      document.getElementById('cand-skills-count').innerText = skills.length;
+      document.getElementById('cand-exp').innerText = `~${activeCandidate.estimated_experience_years || 1.5} yrs`;
+      document.getElementById('cand-degree').innerText = activeCandidate.highest_degree || "Degree Detected";
+
+      const avMetrics = activeCandidate.action_verb_metrics || {};
+      const avScore = activeCandidate.action_verb_score || avMetrics.action_verb_score || Math.min(100, Math.round((activeCandidate.action_verbs_count || 12) * 5));
+      document.getElementById('cand-action-verbs').innerText = `${avScore}/100`;
+
+      // Profile Summary
+      const summaryText = activeCandidate.summary || activeCandidate.sections?.summary || (activeCandidate.clean_text || activeCandidate.raw_text ? (activeCandidate.clean_text || activeCandidate.raw_text).substring(0, 320) + "..." : "Resume extracted successfully.");
+      document.getElementById('profile-summary').innerText = summaryText;
+
+      // Section Chips (Supports array, object dict, or section_names)
+      let sectionsList = [];
+      if (Array.isArray(activeCandidate.section_names)) {
+        sectionsList = activeCandidate.section_names;
+      } else if (Array.isArray(activeCandidate.sections)) {
+        sectionsList = activeCandidate.sections;
+      } else if (activeCandidate.sections && typeof activeCandidate.sections === 'object') {
+        sectionsList = Object.keys(activeCandidate.sections);
+      } else {
+        sectionsList = ["experience", "education", "skills", "projects"];
+      }
+
+      document.getElementById('profile-sections-chips').innerHTML = sectionsList.map(s => `
+        <span class="brutal-tag px-3 py-1 bg-[#FEF08A] text-devdark text-[11px] font-bold capitalize">
+          ${s}
+        </span>
+      `).join('');
+
+      // Action Verbs (Supports array, action_verb_metrics.verbs_used, or default list)
+      let verbsList = [];
+      if (Array.isArray(activeCandidate.action_verbs) && activeCandidate.action_verbs.length > 0) {
+        verbsList = activeCandidate.action_verbs;
+      } else if (Array.isArray(activeCandidate.action_verb_metrics?.verbs_used) && activeCandidate.action_verb_metrics.verbs_used.length > 0) {
+        verbsList = activeCandidate.action_verb_metrics.verbs_used;
+      } else {
+        verbsList = ["built", "developed", "designed", "optimized", "implemented", "scaled"];
+      }
+
+      document.getElementById('profile-verbs-chips').innerHTML = verbsList.slice(0, 8).map(v => `
+        <span class="brutal-tag px-2.5 py-1 bg-[#FECDD3] text-devdark text-[11px] font-bold">
+          ${v}
+        </span>
+      `).join('');
+
+      renderSkillsTaxonomy(skills);
+      lucide.createIcons();
+    }
+
+    function renderSkillsTaxonomy(skills) {
+      const container = document.getElementById('skills-taxonomy-container');
+      if (!container) return;
+      if (!skills || !Array.isArray(skills) || skills.length === 0) {
+        container.innerHTML = `<div class="p-6 text-center text-stone-500 font-bold text-xs">No skills identified yet. Upload a resume to populate competency cloud.</div>`;
+        return;
+      }
+
+      const grouped = {};
+      skills.forEach(skill => {
+        let domain = "Core Tech & Tools";
+        const s = skill.toLowerCase();
+        if (s.includes('python') || s.includes('torch') || s.includes('tensor') || s.includes('learning') || s.includes('scikit') || s.includes('cv') || s.includes('nlp')) {
+          domain = "AI & Machine Learning";
+        } else if (s.includes('sql') || s.includes('data') || s.includes('spark') || s.includes('pandas') || s.includes('bi')) {
+          domain = "Data Science & Analytics";
+        } else if (s.includes('cloud') || s.includes('aws') || s.includes('azure') || s.includes('docker') || s.includes('k8s') || s.includes('devops') || s.includes('linux')) {
+          domain = "Cloud & Infrastructure";
+        } else if (s.includes('react') || s.includes('node') || s.includes('api') || s.includes('js') || s.includes('html') || s.includes('git')) {
+          domain = "Software Engineering";
+        }
+        if (!grouped[domain]) grouped[domain] = [];
+        grouped[domain].push(skill);
+      });
+
+      const colors = {
+        "AI & Machine Learning": "#FED7AA",
+        "Data Science & Analytics": "#FEF08A",
+        "Cloud & Infrastructure": "#CCFBF1",
+        "Software Engineering": "#DDD6FE",
+        "Core Tech & Tools": "#FECDD3"
+      };
+
+      container.innerHTML = Object.entries(grouped).map(([domain, skList]) => `
+        <div class="skill-category-block p-4 rounded-2xl bg-[#FFFEFB] border-2 border-devdark shadow-[3px_3px_0_#121212]">
+          <div class="flex items-center justify-between mb-2.5">
+            <h4 class="text-xs font-black text-devdark uppercase tracking-wider font-heading">${domain}</h4>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-devdark text-white font-mono">${skList.length} skills</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            ${skList.map(s => `
+              <span class="skill-tag brutal-tag px-2.5 py-0.5 text-[11px] font-bold" style="background-color: ${colors[domain] || '#FAF7ED'};">
+                ${s}
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterSkills() {
+      const q = (document.getElementById('skill-search-input')?.value || "").toLowerCase();
+      document.querySelectorAll('.skill-tag').forEach(tag => {
+        if (tag.innerText.toLowerCase().includes(q)) {
+          tag.classList.remove('hidden');
+        } else {
+          tag.classList.add('hidden');
+        }
+      });
+    }
+
+    // ================= RECOMMENDATIONS =================
+    async function fetchRecommendations() {
+      const cat = document.getElementById('recs-domain-filter')?.value || "All";
+      const grid = document.getElementById('recs-grid');
+      if (grid) {
+        grid.innerHTML = `<div class="col-span-full py-12 text-center font-bold text-devdark"><div class="inline-block w-8 h-8 border-4 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p class="text-xs">Computing TF-IDF career matching...</p></div>`;
+      }
+
+      try {
+        const res = await fetch(`/api/recommendations?category=${encodeURIComponent(cat)}&top_k=9`);
+        const data = await res.json();
+        renderRecommendations(data.recommendations || []);
+      } catch (e) {
+        if (grid) grid.innerHTML = `<div class="col-span-full py-8 text-center text-red-500 font-bold">Error loading recommendations: ${e}</div>`;
+      }
+    }
+
+    function renderRecommendations(recs) {
+      const grid = document.getElementById('recs-grid');
+      if (!grid) return;
+
+      if (!recs || recs.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-12 text-center text-stone-600 font-bold">No recommendations found for this category filter.</div>`;
+        return;
+      }
+
+      grid.innerHTML = recs.map((r, i) => {
+        const roleName = r.role_name || r.target_role || "Target Role";
+        const score = r.match_percentage || r.compatibility_score || 0;
+        const color = score >= 75 ? '#86EFAC' : (score >= 50 ? '#FEF08A' : '#FECDD3');
+        const desc = r.job_description || r.role_description || "";
+        const salary = r.avg_salary_range || r.salary_band || "$100k - $150k";
+        const category = r.category || "General Tech";
+        const reqSkills = (r.required_skills && Array.isArray(r.required_skills) && r.required_skills.length > 0)
+          ? r.required_skills
+          : [...(r.matched_skills || []), ...(r.missing_skills || [])];
+
+        const safeRoleName = encodeURIComponent(roleName);
+        const safeDesc = encodeURIComponent(desc);
+
+        return `
+          <div class="p-5 brutal-card flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0_#121212] transition-all">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="brutal-tag text-[10px] font-extrabold px-2.5 py-0.5 bg-[#FAF7ED] text-devdark uppercase tracking-wider">${category}</span>
+                <span class="brutal-tag text-xs font-black px-2.5 py-0.5 border-2 border-devdark shadow-[2px_2px_0_#121212] font-mono" style="background-color: ${color};">
+                  ${score}% Match
+                </span>
+              </div>
+              <h4 class="text-base font-black text-devdark font-heading mt-1">${roleName}</h4>
+              <p class="text-xs text-stone-700 font-semibold line-clamp-2 mt-2 leading-relaxed">${desc}</p>
+            </div>
+
+            <div class="space-y-3 pt-3 mt-3 border-t-2 border-devdark">
+              <div>
+                <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider mb-1">Key Required Skills:</div>
+                <div class="flex flex-wrap gap-1">
+                  ${reqSkills.slice(0, 4).map(s => `<span class="brutal-tag px-2 py-0.5 text-[10px] bg-white font-mono">${s}</span>`).join('')}
+                  ${reqSkills.length > 4 ? `<span class="text-[10px] text-stone-500 font-bold font-mono">+${reqSkills.length - 4}</span>` : ''}
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-2 border-t border-devdark/20 text-xs">
+                <span class="font-extrabold text-[#F97028] font-mono">${salary}</span>
+                <button onclick="applyRoleToATS(decodeURIComponent('${safeRoleName}'), decodeURIComponent('${safeDesc}'))" class="brutal-btn-orange px-3 py-1 rounded-xl text-[11px] font-black flex items-center gap-1">
+                  <span>Match ATS</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3 stroke-[3]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function applyRoleToATS(title, desc) {
+      document.getElementById('ats-job-title').value = title;
+      document.getElementById('ats-job-text').value = desc;
+      setActiveTab('tab-ats');
+      runJobMatch();
+    }
+
+    // ================= 4-PILLAR ATS MATCHING =================
+    async function selectJD(jdKey, btnEl) {
+      document.querySelectorAll('.jd-btn').forEach(b => {
+        b.className = "jd-btn w-full text-left p-3 rounded-xl border-2 border-devdark bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] text-xs font-bold shadow-[2px_2px_0_#121212] flex items-center justify-between";
+      });
+      if (btnEl) {
+        btnEl.classList.remove('bg-[#FFFEFB]');
+        btnEl.classList.add('bg-[#FED7AA]');
+      } else {
+        const firstBtn = document.querySelector('.jd-btn');
+        if (firstBtn) {
+          firstBtn.classList.remove('bg-[#FFFEFB]');
+          firstBtn.classList.add('bg-[#FED7AA]');
+        }
+      }
+
+      if (sampleDataCache && sampleDataCache.jds) {
+        const found = sampleDataCache.jds.find(j => j.id === jdKey);
+        if (found) {
+          const titleInput = document.getElementById('ats-job-title');
+          const textInput = document.getElementById('ats-job-text');
+          if (titleInput) titleInput.value = found.title;
+          if (textInput) textInput.value = found.text;
+        }
+      }
+    }
+
+    async function runJobMatch() {
+      let title = document.getElementById('ats-job-title')?.value || "Machine Learning Engineer";
+      let text = document.getElementById('ats-job-text')?.value;
+      if (!text || !text.trim()) {
+        if (sampleDataCache?.jds?.[0]) {
+          text = sampleDataCache.jds[0].text;
+          title = sampleDataCache.jds[0].title;
+          const textInput = document.getElementById('ats-job-text');
+          const titleInput = document.getElementById('ats-job-title');
+          if (textInput) textInput.value = text;
+          if (titleInput) titleInput.value = title;
+        }
+      }
+      if (!text) return;
+      const resultCard = document.getElementById('ats-result-card');
+      if (!resultCard) return;
+
+      resultCard.innerHTML = `<div class="py-24 text-center text-devdark font-bold"><div class="inline-block w-10 h-10 border-4 border-devdark border-t-[#F97028] rounded-full animate-spin mb-3"></div><p class="text-xs">Executing 4-Pillar ATS Diagnostic Audit...</p></div>`;
+
+      try {
+        const res = await fetch('/api/match-job', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jd_text: text, jd_title: title })
+        });
+        const data = await res.json();
+        renderATSScorecard(data);
+      } catch (e) {
+        resultCard.innerHTML = `<div class="py-12 text-center text-red-500 font-bold">Matching error: ${e}</div>`;
+      }
+    }
+
+    function renderATSScorecard(m) {
+      const score = m.overall_match_percentage;
+      const cardColor = score >= 75 ? '#86EFAC' : (score >= 50 ? '#FEF08A' : '#FECDD3');
+
+      document.getElementById('ats-result-card').innerHTML = `
+        <div class="space-y-6">
+          <!-- Overall Score Header -->
+          <div class="p-5 rounded-2xl border-2 border-devdark shadow-[4px_4px_0_#121212] flex flex-col sm:flex-row sm:items-center justify-between gap-4" style="background-color: ${cardColor};">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-devdark">ATS Compatibility Index</span>
+              <h3 class="text-xl font-black text-devdark font-heading mt-0.5">${m.target_role}</h3>
+              <p class="text-xs text-devdark font-bold mt-1">${m.readiness_level}</p>
+            </div>
+            <div class="text-right">
+              <div class="text-4xl font-black text-devdark font-heading">${score}%</div>
+              <span class="text-[10px] font-bold text-devdark font-mono">Weighted 4-Pillar Score</span>
+            </div>
+          </div>
+
+          <!-- 4 Pillars Breakdown Bars -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-black uppercase tracking-wider text-devdark font-heading">Diagnostic Pillars Breakdown</h4>
+            
+            <div class="p-4 rounded-xl bg-[#FAF7ED] border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] space-y-3">
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-devdark mb-1">
+                  <span>Skills Alignment (40%)</span>
+                  <span class="font-mono">${m.pillar_breakdown.skill_alignment_score}%</span>
+                </div>
+                <div class="w-full h-3.5 bg-white border-2 border-devdark rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-400 border-r-2 border-devdark" style="width: ${m.pillar_breakdown.skill_alignment_score}%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-devdark mb-1">
+                  <span>Semantic Similarity (25%)</span>
+                  <span class="font-mono">${m.pillar_breakdown.semantic_similarity_score}%</span>
+                </div>
+                <div class="w-full h-3.5 bg-white border-2 border-devdark rounded-full overflow-hidden">
+                  <div class="h-full bg-[#38BDF8] border-r-2 border-devdark" style="width: ${m.pillar_breakdown.semantic_similarity_score}%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-devdark mb-1">
+                  <span>Experience Fit (20%)</span>
+                  <span class="font-mono">${m.pillar_breakdown.experience_fit_score}%</span>
+                </div>
+                <div class="w-full h-3.5 bg-white border-2 border-devdark rounded-full overflow-hidden">
+                  <div class="h-full bg-[#F59E0B] border-r-2 border-devdark" style="width: ${m.pillar_breakdown.experience_fit_score}%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-devdark mb-1">
+                  <span>Impact & Action Verbs (15%)</span>
+                  <span class="font-mono">${m.pillar_breakdown.action_verb_score}%</span>
+                </div>
+                <div class="w-full h-3.5 bg-white border-2 border-devdark rounded-full overflow-hidden">
+                  <div class="h-full bg-devpink border-r-2 border-devdark" style="width: ${m.pillar_breakdown.action_verb_score}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Matched Skills vs Gaps -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-[#DCFCE7] border-2 border-devdark shadow-[3px_3px_0_#121212]">
+              <div class="text-xs font-black text-devdark mb-2 flex items-center gap-1.5 font-heading">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-700 stroke-[2.5]"></i> Matched Competencies (${m.total_matching_skills})
+              </div>
+              <div class="flex flex-wrap gap-1">
+                ${m.matching_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[10px] bg-white font-mono">${s}</span>`).join('')}
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#FFE4E6] border-2 border-devdark shadow-[3px_3px_0_#121212]">
+              <div class="text-xs font-black text-devdark mb-2 flex items-center gap-1.5 font-heading">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-700 stroke-[2.5]"></i> Missing Skill Gaps (${m.total_missing_skills})
+              </div>
+              <div class="flex flex-wrap gap-1">
+                ${m.missing_skills.length > 0 ? m.missing_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[10px] bg-white text-rose-800 font-mono">${s}</span>`).join('') : '<span class="text-xs text-emerald-800 font-bold">No critical skill gaps!</span>'}
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Action -->
+          <div class="p-4 rounded-xl bg-[#FFFEFB] border-2 border-devdark shadow-[3px_3px_0_#121212] text-xs font-semibold text-stone-800">
+            <b class="text-[#F97028] font-black uppercase tracking-wider font-heading">Recommended Strategy:</b> ${m.recommended_action}
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // ================= AI RESUME OPTIMIZER =================
+    function switchAITool(tool) {
+      document.querySelectorAll('.ai-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.ai-tool-btn').forEach(b => {
+        b.className = "ai-tool-btn w-full p-3 text-left rounded-xl bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A] border-2 border-devdark shadow-[2px_2px_0_#121212] text-xs font-bold flex items-center gap-2.5";
+      });
+
+      const target = document.getElementById(`ai-panel-${tool}`);
+      if (target) target.classList.remove('hidden');
+
+      const btn = document.getElementById(`ai-tool-btn-${tool}`);
+      if (btn) {
+        btn.className = "ai-tool-btn w-full p-3 text-left rounded-xl bg-devpink text-devdark border-2 border-devdark shadow-[2.5px_2.5px_0_#121212] text-xs font-extrabold flex items-center gap-2.5";
+      }
+    }
+
+    async function generateAISummary() {
+      const role = document.getElementById('ai-target-role').value;
+      const out = document.getElementById('ai-summary-output');
+      out.innerHTML = `<div class="py-8 text-center text-devdark font-bold"><div class="inline-block w-6 h-6 border-2 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p>Drafting ATS executive summary via ${getEngineName()}...</p></div>`;
+
+      try {
+        const res = await fetch('/api/ai/summary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_role: role })
+        });
+        const data = await res.json();
+        out.innerHTML = `
+          <div class="prose prose-xs text-stone-900 font-semibold leading-relaxed">
+            ${marked.parse(data.summary)}
+          </div>
+        `;
+      } catch (e) {
+        out.innerText = "Error: " + e;
+      }
+    }
+
+    async function generateAIRewrite() {
+      const role = document.getElementById('ai-target-role').value;
+      const desc = document.getElementById('ai-raw-project').value;
+      const out = document.getElementById('ai-rewrite-output');
+      out.innerHTML = `<div class="py-8 text-center text-devdark font-bold"><div class="inline-block w-6 h-6 border-2 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p>Applying STAR framework with action verbs...</p></div>`;
+
+      try {
+        const res = await fetch('/api/ai/rewrite-project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_role: role, project_desc: desc })
+        });
+        const data = await res.json();
+        out.innerHTML = `
+          <div class="prose prose-xs text-stone-900 font-semibold leading-relaxed">
+            ${marked.parse(data.rewritten)}
+          </div>
+        `;
+      } catch (e) {
+        out.innerText = "Error: " + e;
+      }
+    }
+
+    async function generateAIRoadmap() {
+      const role = document.getElementById('ai-target-role').value;
+      const out = document.getElementById('ai-roadmap-output');
+      out.innerHTML = `<div class="py-8 text-center text-devdark font-bold"><div class="inline-block w-6 h-6 border-2 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p>Curating 8-week structured roadmap...</p></div>`;
+
+      try {
+        const res = await fetch('/api/ai/roadmap', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_role: role })
+        });
+        const data = await res.json();
+        out.innerHTML = `
+          <div class="prose prose-xs text-stone-900 font-semibold leading-relaxed">
+            ${marked.parse(data.roadmap)}
+          </div>
+        `;
+      } catch (e) {
+        out.innerText = "Error: " + e;
+      }
+    }
+
+    function getEngineName() {
+      return document.getElementById('engine-badge')?.innerText || "GROQ";
+    }
+
+    // ================= CAREER COUNSELOR CHATBOT =================
+    function sendQuickPrompt(promptText) {
+      document.getElementById('chat-input').value = promptText;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    async function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const q = input.value.trim();
+      if (!q) return;
+
+      const role = document.getElementById('chat-target-role').value;
+      const log = document.getElementById('chat-log');
+
+      // Append User Bubble
+      log.innerHTML += `
+        <div class="flex justify-end">
+          <div class="p-3.5 rounded-2xl bg-[#FFFEFB] border-2 border-devdark shadow-[3px_3px_0_#121212] text-xs font-bold text-devdark max-w-xl">
+            ${q}
+          </div>
+        </div>
+      `;
+      input.value = "";
+      log.scrollTop = log.scrollHeight;
+
+      const msgId = "ai-msg-" + Date.now();
+      log.innerHTML += `
+        <div class="flex gap-3" id="${msgId}">
+          <div class="w-9 h-9 rounded-xl bg-[#FEF08A] border-2 border-devdark shadow-[2px_2px_0_#121212] flex items-center justify-center text-devdark shrink-0">
+            <i data-lucide="bot" class="w-5 h-5 stroke-[2.5]"></i>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-[#FAF7ED] border-2 border-devdark shadow-[3px_3px_0_#121212] text-xs font-semibold text-stone-600 max-w-2xl animate-pulse">
+            Formulating guidance grounded in candidate skills...
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+      log.scrollTop = log.scrollHeight;
+
+      try {
+        const res = await fetch('/api/ai/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: q, target_role: role })
+        });
+        const data = await res.json();
+        const bubble = document.getElementById(msgId);
+        if (bubble) {
+          bubble.querySelector('div:last-child').className = "p-4 rounded-2xl bg-[#FFFEFB] border-2 border-devdark shadow-[3px_3px_0_#121212] text-xs font-semibold text-devdark leading-relaxed max-w-2xl";
+          bubble.querySelector('div:last-child').innerHTML = marked.parse(data.answer);
+        }
+      } catch (err) {
+        const bubble = document.getElementById(msgId);
+        if (bubble) bubble.querySelector('div:last-child').innerText = "Error: " + err;
+      }
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // ================= RECRUITER SCREENING =================
+    let lastScreenResults = [];
+
+    async function runRecruiterBatch() {
+      const jdKey = document.getElementById('recruiter-jd-select').value;
+      const tbody = document.getElementById('recruiter-leaderboard-body');
+      tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-devdark font-bold text-xs"><div class="inline-block w-6 h-6 border-2 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p>Screening candidate resume pool in real time...</p></td></tr>`;
+
+      try {
+        const res = await fetch('/api/recruiter-screen', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jd_id: jdKey })
+        });
+        const data = await res.json();
+        lastScreenResults = data.leaderboard || [];
+        
+        document.getElementById('recruiter-pool-count-badge').innerText = `Pool: ${data.candidate_count || lastScreenResults.length} Candidates`;
+
+        if (lastScreenResults.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-stone-600 text-xs font-bold">No candidates currently in the screening pool. Upload a PDF resume above to get started.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = lastScreenResults.map((c, idx) => {
+          const isUser = c.is_active_user;
+          const userHighlight = isUser ? 'bg-[#FEF3C7] border-l-4 border-l-[#F97028]' : 'hover:bg-[#FAF7ED]';
+
+          return `
+            <tr class="${userHighlight} transition-colors">
+              <td class="py-3.5 px-4 font-mono font-black text-devdark">#${idx + 1}</td>
+              <td class="py-3.5 px-4">
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold text-devdark text-xs">${c.candidate_name}</span>
+                  ${isUser ? `<span class="brutal-tag px-2 py-0.5 text-[9px] font-black uppercase tracking-wider bg-emerald-300 text-devdark">Active Resume</span>` : ''}
+                </div>
+                <div class="text-[11px] text-stone-600 font-semibold font-mono mt-0.5">${c.highest_degree || 'Degree'} • ~${c.estimated_experience_years || 1.5} yrs</div>
+              </td>
+              <td class="py-3.5 px-4 text-center">
+                <span class="font-mono font-black text-sm px-2 py-0.5 rounded-lg border border-devdark ${c.overall_match_percentage >= 70 ? 'bg-[#86EFAC]' : (c.overall_match_percentage >= 45 ? 'bg-[#FEF08A]' : 'bg-[#FECDD3]')}">${c.overall_match_percentage}%</span>
+              </td>
+              <td class="py-3.5 px-4 text-center font-mono font-bold text-devdark">${c.pillar_breakdown.skill_alignment_score}%</td>
+              <td class="py-3.5 px-4 text-center font-mono font-bold text-devdark">${c.pillar_breakdown.experience_fit_score}%</td>
+              <td class="py-3.5 px-4">
+                <span class="brutal-tag px-2.5 py-1 text-[10px] font-bold ${c.overall_match_percentage >= 70 ? 'bg-[#DCFCE7]' : 'bg-[#FAF7ED]'} whitespace-nowrap">${c.readiness_level}</span>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                <div class="flex items-center justify-end gap-1.5">
+                  <button onclick="inspectCandidateModal(${idx})" class="brutal-btn px-2.5 py-1 rounded-lg bg-devdark text-white text-[11px] font-bold">
+                    Inspect
+                  </button>
+                  <button onclick="removeCandidate('${encodeURIComponent(c.candidate_name)}')" title="Remove candidate from pool" class="brutal-btn p-1 rounded-lg bg-white hover:bg-rose-100 text-devdark">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5 stroke-[2.5]"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+        lucide.createIcons();
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-4 text-center text-red-500 text-xs font-bold">Error screening candidates: ${e}</td></tr>`;
+      }
+    }
+
+    async function removeCandidate(encodedName) {
+      const name = decodeURIComponent(encodedName);
+      if (!confirm(`Remove candidate "${name}" from the screening pool?`)) return;
+      try {
+        await fetch(`/api/recruiter-pool/remove?candidate_name=${encodeURIComponent(name)}`, { method: 'DELETE' });
+        await runRecruiterBatch();
+      } catch (e) {
+        alert("Error removing candidate: " + e);
+      }
+    }
+
+    async function clearSampleCandidates() {
+      if (!confirm("Remove all 4 benchmark sample candidates (Alex Morgan, Sarah Chen, David Kim, Priya Patel) from the screening pool?")) return;
+      try {
+        await fetch('/api/recruiter-pool/clear-samples', { method: 'POST' });
+        await runRecruiterBatch();
+      } catch (e) {
+        alert("Error clearing samples: " + e);
+      }
+    }
+
+    function inspectCandidateModal(idx) {
+      const c = lastScreenResults[idx];
+      if (!c) return;
+
+      document.getElementById('modal-title').innerText = `${c.candidate_name} • Match Audit`;
+      document.getElementById('modal-subtitle').innerText = `Role: ${c.target_role} | ATS Score: ${c.overall_match_percentage}%`;
+
+      document.getElementById('modal-content').innerHTML = `
+        <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#FAF7ED] border-2 border-devdark shadow-[3px_3px_0_#121212] text-center">
+          <div>
+            <div class="text-[10px] text-stone-600 uppercase tracking-wider font-extrabold">Skills Overlap</div>
+            <div class="text-lg font-black text-devdark font-mono font-heading">${c.pillar_breakdown.skill_alignment_score}%</div>
+          </div>
+          <div>
+            <div class="text-[10px] text-stone-600 uppercase tracking-wider font-extrabold">Experience Fit</div>
+            <div class="text-lg font-black text-devdark font-mono font-heading">${c.pillar_breakdown.experience_fit_score}%</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-black text-devdark uppercase tracking-wider mb-2 flex items-center gap-1.5 font-heading text-emerald-800">
+            <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i> Matched Competencies (${c.total_matching_skills})
+          </h4>
+          <div class="flex flex-wrap gap-1">
+            ${c.matching_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[11px] bg-[#DCFCE7] text-devdark font-mono font-bold">${s}</span>`).join('')}
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-black text-devdark uppercase tracking-wider mb-2 flex items-center gap-1.5 font-heading text-rose-800">
+            <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i> Missing Skills / Gaps (${c.total_missing_skills})
+          </h4>
+          <div class="flex flex-wrap gap-1">
+            ${c.missing_skills.length > 0 ? c.missing_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[11px] bg-[#FFE4E6] text-devdark font-mono font-bold">${s}</span>`).join('') : '<span class="text-xs text-emerald-800 font-bold">All required skills present!</span>'}
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-[#FAF7ED] border-2 border-devdark text-xs font-semibold text-devdark">
+          <b class="text-[#F97028] font-black uppercase tracking-wider font-heading">Hiring Recommendation:</b> ${c.recommended_action}
+        </div>
+      `;
+      document.getElementById('detail-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // ================= 40+ TECH ROLES EXPLORER =================
+    async function fetchCatalogRoles() {
+      const grid = document.getElementById('catalog-roles-grid');
+      if (grid && (!allCatalogRoles || allCatalogRoles.length === 0)) {
+        grid.innerHTML = `<div class="col-span-full py-16 text-center text-devdark font-bold"><div class="inline-block w-8 h-8 border-4 border-devdark border-t-[#F97028] rounded-full animate-spin mb-2"></div><p class="text-xs">Loading benchmark roles catalog in real time...</p></div>`;
+      }
+
+      try {
+        const res = await fetch('/api/catalog-roles');
+        const data = await res.json();
+        allCatalogRoles = data.roles || [];
+        document.getElementById('catalog-count-badge').innerText = `${allCatalogRoles.length} Roles Live`;
+        filterCatalogRealtime();
+      } catch (e) {
+        console.error("Error fetching catalog:", e);
+        if (grid) grid.innerHTML = `<div class="col-span-full py-8 text-center text-red-500 text-xs font-bold">Error loading roles: ${e}</div>`;
+      }
+    }
+
+    function setCatalogDomainFilter(categoryName, btnEl) {
+      activeCatalogDomain = categoryName;
+      document.querySelectorAll('.catalog-domain-btn').forEach(b => {
+        b.className = "catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#FFFEFB] text-devdark hover:bg-[#FEF08A]";
+      });
+      if (btnEl) {
+        btnEl.className = "catalog-domain-btn brutal-btn px-3.5 py-1.5 rounded-xl text-xs font-black bg-[#F97028] text-devdark shadow-[3px_3px_0_#121212]";
+      }
+      filterCatalogRealtime();
+    }
+
+    function filterCatalogRealtime() {
+      const q = (document.getElementById('catalog-search-input')?.value || "").toLowerCase().trim();
+      let filtered = allCatalogRoles;
+
+      if (activeCatalogDomain && activeCatalogDomain !== "All") {
+        filtered = filtered.filter(r => r.category.toLowerCase() === activeCatalogDomain.toLowerCase());
+      }
+
+      if (q) {
+        filtered = filtered.filter(r => 
+          r.role_name.toLowerCase().includes(q) ||
+          r.category.toLowerCase().includes(q) ||
+          (r.required_skills && r.required_skills.toLowerCase().includes(q)) ||
+          (r.job_description && r.job_description.toLowerCase().includes(q))
+        );
+      }
+
+      renderCatalog(filtered);
+    }
+
+    function renderCatalog(roles) {
+      const grid = document.getElementById('catalog-roles-grid');
+      if (!grid) return;
+
+      if (!roles || roles.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-16 text-center text-stone-600 text-xs font-bold">No roles found matching your filter or search query.</div>`;
+        return;
+      }
+
+      const candSkills = new Set((activeCandidate?.skills || []).map(s => s.toLowerCase()));
+
+      grid.innerHTML = roles.map(r => {
+        const reqSkillsList = (r.required_skills || "").split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+        const hasCount = reqSkillsList.filter(s => candSkills.has(s)).length;
+
+        return `
+          <div class="p-5 brutal-card flex flex-col justify-between hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[7px_7px_0_#121212] transition-all">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="brutal-tag text-[10px] font-extrabold px-2.5 py-0.5 bg-[#FAF7ED] text-devdark uppercase tracking-wider">${r.category}</span>
+                <span class="brutal-tag text-[10px] font-black text-devdark bg-[#CCFBF1] px-2 py-0.5">${r.market_demand || 'High'} Demand</span>
+              </div>
+              <h4 class="text-base font-black text-devdark font-heading mt-1">${r.role_name}</h4>
+              <div class="text-[11px] text-stone-600 font-bold font-mono mt-0.5">Min: ${r.min_experience_years || 1} yrs exp • ${r.experience_level || 'Mid-Level'}</div>
+              <p class="text-xs text-stone-700 font-semibold line-clamp-2 mt-2 leading-relaxed">${r.job_description}</p>
+            </div>
+
+            <div class="space-y-3 pt-3 mt-3 border-t-2 border-devdark">
+              <div>
+                <div class="text-[10px] text-devdark font-extrabold uppercase tracking-wider mb-1">Required Skills:</div>
+                <div class="flex flex-wrap gap-1">
+                  ${reqSkillsList.slice(0, 5).map(s => {
+                    const owned = candSkills.has(s);
+                    const pillClass = owned ? 'bg-[#DCFCE7] text-emerald-950 font-bold' : 'bg-white text-stone-800';
+                    return `<span class="brutal-tag px-1.5 py-0.5 text-[10px] ${pillClass} font-mono">${s}${owned ? ' ✓' : ''}</span>`;
+                  }).join('')}
+                  ${reqSkillsList.length > 5 ? `<span class="text-[10px] text-stone-500 font-bold font-mono">+${reqSkillsList.length - 5}</span>` : ''}
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-2 border-t border-devdark/20 text-xs">
+                <span class="font-black text-[#F97028] font-mono">${r.avg_salary_range}</span>
+                <button onclick="matchSpecificCatalogRole(${r.role_id})" class="brutal-btn-orange px-3 py-1 rounded-xl text-[11px] font-black flex items-center gap-1">
+                  <span>Match Me</span>
+                  <i data-lucide="arrow-right" class="w-3 h-3 stroke-[3]"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    async function matchSpecificCatalogRole(roleId) {
+      try {
+        const res = await fetch(`/api/catalog-role-match/${roleId}`, { method: 'POST' });
+        const m = await res.json();
+        
+        document.getElementById('modal-title').innerText = `${m.role_data.role_name} • Live Profile Match`;
+        document.getElementById('modal-subtitle').innerText = `Category: ${m.role_data.category} | Candidate: ${m.candidate_name}`;
+
+        const score = m.overall_match_percentage;
+        const color = score >= 75 ? '#86EFAC' : (score >= 50 ? '#FEF08A' : '#FECDD3');
+
+        document.getElementById('modal-content').innerHTML = `
+          <div class="p-4 rounded-2xl border-2 border-devdark shadow-[3.5px_3.5px_0_#121212] flex items-center justify-between" style="background-color: ${color};">
+            <div>
+              <div class="text-[10px] text-devdark uppercase tracking-wider font-black font-heading">Your Real-Time Compatibility Index</div>
+              <div class="text-xs text-devdark mt-0.5 font-bold">${m.readiness_level}</div>
+            </div>
+            <div class="text-3xl font-black text-devdark font-heading">${score}%</div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2.5 text-center text-xs">
+            <div class="p-3 rounded-xl bg-[#FAF7ED] border-2 border-devdark shadow-[2px_2px_0_#121212]">
+              <div class="text-[10px] text-stone-600 font-bold uppercase">Skills Overlap</div>
+              <div class="font-black text-devdark font-mono text-sm mt-0.5">${m.pillar_breakdown.skill_alignment_score}%</div>
+            </div>
+            <div class="p-3 rounded-xl bg-[#FAF7ED] border-2 border-devdark shadow-[2px_2px_0_#121212]">
+              <div class="text-[10px] text-stone-600 font-bold uppercase">Experience Fit</div>
+              <div class="font-black text-devdark font-mono text-sm mt-0.5">${m.pillar_breakdown.experience_fit_score}%</div>
+            </div>
+            <div class="p-3 rounded-xl bg-[#FAF7ED] border-2 border-devdark shadow-[2px_2px_0_#121212]">
+              <div class="text-[10px] text-stone-600 font-bold uppercase">Semantic Fit</div>
+              <div class="font-black text-devdark font-mono text-sm mt-0.5">${m.pillar_breakdown.semantic_similarity_score}%</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-black text-devdark uppercase tracking-wider mb-1.5 flex items-center gap-1.5 font-heading text-emerald-800">
+              <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i> Matched Skills (${m.total_matching_skills})
+            </h4>
+            <div class="flex flex-wrap gap-1">
+              ${m.matching_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[11px] bg-[#DCFCE7] text-devdark font-mono font-bold">${s}</span>`).join('')}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-black text-devdark uppercase tracking-wider mb-1.5 flex items-center gap-1.5 font-heading text-rose-800">
+              <i data-lucide="x" class="w-4 h-4 stroke-[3]"></i> Missing Skills to Acquire (${m.total_missing_skills})
+            </h4>
+            <div class="flex flex-wrap gap-1">
+              ${m.missing_skills.length > 0 ? m.missing_skills.map(s => `<span class="brutal-tag px-2 py-0.5 text-[11px] bg-[#FFE4E6] text-devdark font-mono font-bold">${s}</span>`).join('') : '<span class="text-xs text-emerald-800 font-bold">All required skills acquired!</span>'}
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#FAF7ED] border-2 border-devdark text-xs font-semibold text-devdark">
+            <b class="text-[#F97028] font-black uppercase tracking-wider font-heading">Roadmap Advice:</b> Focus on developing <b>${m.missing_skills.slice(0, 3).join(', ') || 'advanced project portfolio work'}</b> to boost match probability.
+          </div>
+        `;
+        document.getElementById('detail-modal').classList.remove('hidden');
+        lucide.createIcons();
+      } catch (e) {
+        alert("Error matching role: " + e);
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

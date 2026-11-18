@@ -1,0 +1,20 @@
+Job Title: Cloud & DevOps Engineer
+Company: CloudScale Infrastructure
+Location: Remote
+
+About the Role:
+CloudScale is looking for an experienced Cloud & DevOps Engineer to design resilient infrastructure, automate continuous delivery pipelines, and ensure cloud security across high-availability AWS architectures.
+
+Key Responsibilities:
+- Design, provision, and maintain cloud infrastructure using Terraform (Infrastructure-as-Code).
+- Containerize microservices with Docker and orchestrate deployments using Kubernetes (EKS).
+- Build and maintain continuous integration and deployment (CI/CD) pipelines using GitHub Actions.
+- Configure system observability, logging, and alerts using Prometheus, Grafana, and CloudWatch.
+- Automate repetitive operational tasks using Python and Bash scripting.
+
+Required Qualifications & Skills:
+- Hands-on experience with AWS cloud services (VPC, EC2, S3, RDS, IAM).
+- Deep expertise in Docker, Kubernetes, and container security.
+- Proficiency in Infrastructure as Code using Terraform.
+- Strong scripting skills in Python and Bash under Linux environments.
+- Solid understanding of Git, CI/CD, and networking protocols.

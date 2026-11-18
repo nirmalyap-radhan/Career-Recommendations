@@ -1,0 +1,21 @@
+Job Title: Senior Data Scientist
+Company: InsightMetrics Analytics
+Location: New York, NY / Hybrid
+
+About the Role:
+We are looking for an analytical and detail-oriented Data Scientist to extract actionable insights from multi-terabyte datasets, build predictive models, and design experiments that guide strategic product decisions.
+
+Key Responsibilities:
+- Conduct rigorous statistical analysis, hypothesis testing, and A/B test evaluation.
+- Build predictive machine learning models for customer churn, lifetime value, and recommendation systems using Python, Pandas, and Scikit-Learn.
+- Create engaging interactive executive dashboards using Tableau and Power BI.
+- Write complex, optimized SQL queries to aggregate and transform raw data in BigQuery/Snowflake.
+- Work closely with product and marketing leaders to translate business problems into mathematical formulations.
+
+Required Qualifications & Skills:
+- Advanced expertise in Python (Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn).
+- High proficiency in SQL and relational databases.
+- Strong grounding in probability, statistics, regression analysis, and machine learning algorithms.
+- Experience with Data Visualization tools such as Tableau or Power BI.
+- Experience with feature engineering and predictive modeling.
+- Master's degree or Bachelor's with 2+ years of experience in Data Science, Statistics, Mathematics, or Economics.

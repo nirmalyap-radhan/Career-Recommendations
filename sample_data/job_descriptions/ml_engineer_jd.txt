@@ -1,0 +1,23 @@
+Job Title: Machine Learning Engineer
+Company: Apex AI Technologies
+Location: Remote / Hybrid
+
+About the Role:
+We are seeking a talented and driven Machine Learning Engineer to join our core AI Platform team. In this role, you will design, build, and deploy production-scale machine learning systems, deep learning models, and real-time inference pipelines.
+
+Key Responsibilities:
+- Design and implement end-to-end Machine Learning pipelines from data preprocessing to model deployment.
+- Train and evaluate deep learning models using PyTorch, TensorFlow, and Scikit-Learn.
+- Build automated MLOps workflows using Docker, MLflow, and CI/CD pipelines.
+- Collaborate with software engineers to expose models via low-latency REST APIs using FastAPI.
+- Optimize model inference latency and resource utilization on AWS cloud infrastructure.
+- Monitor model performance and data drift in production environments.
+
+Required Qualifications & Skills:
+- Strong proficiency in Python, NumPy, Pandas, and Scikit-Learn.
+- Hands-on experience with Deep Learning frameworks: PyTorch or TensorFlow.
+- Experience with MLOps concepts, Docker containerization, and Git version control.
+- Solid understanding of SQL and relational database querying.
+- Knowledge of cloud services, specifically AWS (EC2, S3, SageMaker).
+- Familiarity with CI/CD and Kubernetes is a big plus.
+- Bachelor's or Master's degree in Computer Science, Data Science, or related quantitative field.
